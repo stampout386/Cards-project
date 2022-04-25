@@ -1,0 +1,15 @@
+.active {
+    color: darkcyan;
+    font-size: large;
+}
+
+.item {
+    color: #282c34;
+    font-size: medium;
+}
+
+a {
+    margin-left: 10px;
+    text-align: center;
+    text-decoration: none;
+}
