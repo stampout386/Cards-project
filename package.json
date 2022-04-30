@@ -23,7 +23,8 @@
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
     "typescript": "^4.6.3",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yarn": "^1.22.18"
   },
   "homepage": "https://stampout386.github.io/cards-project",
   "scripts": {

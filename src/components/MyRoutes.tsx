@@ -6,6 +6,7 @@ import {PasswordRecovery} from "./PasswordRecovery/PasswordRecovery";
 import {NewPassword} from "./NewPassword/NewPassword";
 import {Test} from "./Test/Test";
 import React from "react";
+import {Register} from "./Register/Register";
 
 export function MyRoutes() {
     return (
@@ -13,6 +14,7 @@ export function MyRoutes() {
             <Routes>
                 <Route path={'/'} element={<Profile/>}/>
                 <Route path={'/login'} element={<Login/>}/>
+                <Route path={'/register'} element={<Register/>}/>
                 <Route path={'/error404'} element={<ErrorPage/>}/>
                 <Route path={'passwordrecovery'} element={<PasswordRecovery/>}/>
                 <Route path={'newpassword'} element={<NewPassword/>}/>
