@@ -12,6 +12,7 @@ export function MyRoutes() {
     return (
         <div>
             <Routes>
+                <Route path={'/cards-project'} element={<Profile/>}/>
                 <Route path={'/'} element={<Profile/>}/>
                 <Route path={'/login'} element={<Login/>}/>
                 <Route path={'/register'} element={<Register/>}/>
