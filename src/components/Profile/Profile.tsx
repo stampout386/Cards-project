@@ -1,12 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 import style from './Profile.module.css'
 import SuperButton from "../common/SuperButton/SuperButton";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../redux/store";
 import {Navigate} from "react-router-dom";
 import {logout} from "../../redux/loginReducer";
-import {setUserData} from "../../redux/profileReducer";
-import {authAPI} from "../../api/loginAPI";
 
 
 export function Profile() {
