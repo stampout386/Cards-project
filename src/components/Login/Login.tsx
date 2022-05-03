@@ -7,6 +7,7 @@ import {NavLink, Navigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../redux/loginReducer";
 import s from "./Login.module.css"
+import {Preloader} from "../common/Preloader/Preloader";
 
 export const Login = () => {
 
@@ -14,6 +15,7 @@ export const Login = () => {
     const dispatch = useDispatch()
 
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.loginPage.isLoggedIn)
+    const status = useSelector<AppRootStateType, string>(state => state.app.status)
 
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
@@ -28,6 +30,8 @@ export const Login = () => {
     if (isLoggedIn) {
         return <Navigate to={'/'}/>
     }
+
+    if (status === 'loading') return <div style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}><Preloader/></div>
 
     return (
         <div className={s.main}>

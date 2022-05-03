@@ -5,12 +5,15 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../redux/store";
 import {Navigate} from "react-router-dom";
 import {logout} from "../../redux/loginReducer";
+import {Preloader} from "../common/Preloader/Preloader";
 
 
 export function Profile() {
-    const isLoggedIn = useSelector<AppRootStateType>(state => state.loginPage.isLoggedIn)
-    const {name, email, avatar, publicCardPacksCount}: any = useSelector<AppRootStateType>(state => state.profilePage)
+    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.loginPage.isLoggedIn)
+    const {name, email, avatar, publicCardPacksCount} = useSelector<AppRootStateType, any>(state => state.profilePage)
+    const status = useSelector<AppRootStateType, string>(state => state.app.status)
     const dispatch = useDispatch<any>();
+
 
     const logoutClick = () => {
         dispatch(logout())
@@ -23,6 +26,10 @@ export function Profile() {
     if (!isLoggedIn) {
         return <Navigate to={'/login'}/>
     }
+
+    if (status === 'loading') return <div style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}><Preloader/></div>
+
+
     return <div className={style.container}>
         Personal information
         <div>

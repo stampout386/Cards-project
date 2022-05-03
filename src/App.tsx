@@ -5,6 +5,7 @@ import {MyMenu} from "./components/MyMenu/MyMenu";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./redux/store";
 import {initializeAppTC} from "./redux/appReducer";
+import {Preloader} from "./components/common/Preloader/Preloader";
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
 
 
     if (!isInitialized) {
-        return <div style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>...Loading</div>
+        return <div style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}><Preloader/></div>
     }
 
 

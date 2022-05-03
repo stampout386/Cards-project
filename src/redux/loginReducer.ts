@@ -2,6 +2,7 @@ import {authAPI, LoginParamsType} from "../api/loginAPI";
 import {Dispatch} from "redux";
 import {setUserData} from "./profileReducer";
 import {ActionType} from "./reducers";
+import {setStatusApp} from "./appReducer";
 
 const InitialState = {
     isLoggedIn: false,
@@ -25,21 +26,27 @@ const Error = (error: string) => ({type: 'ERROR', payload: {error}} as const)
 // thunks
 export const login = (data: LoginParamsType) => async (dispatch: Dispatch<ActionType>) => {
     try {
+        dispatch(setStatusApp('loading'))
         const res = await authAPI.login(data)
         dispatch(setUserData(res.data)) //из профайл-редьюсера где идёт set всех данных юзера
         dispatch(LoggedIn(true))
+        dispatch(setStatusApp('succeeded'))
 
     } catch (e: any) {
         dispatch(Error(e.response ? e.response.data.error : e.message))
+        dispatch(setStatusApp('succeeded'))
     }
 }
 
 export const logout = () => (dispatch: Dispatch<ActionType>) => {
+    dispatch(setStatusApp('loading'))
     authAPI.logout()
         .then(() => {
             dispatch(LoggedIn(false))
         }).catch((e) => {
         dispatch(Error(e.response ? e.response.data.error : e.message))
+    }).finally(() => {
+        dispatch(setStatusApp('succeeded'))
     })
 }
 

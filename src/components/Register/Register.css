@@ -2,7 +2,7 @@
     margin-top: 200px;
     text-align: center;
     font-size: larger;
-    color: #c24f4f;
+    color: #151212;
     width: 500px;
     height: 500px;
     border: 1px solid #7c7a7a;
@@ -11,10 +11,18 @@
     margin-right: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .error {
     color: red;
 }
 
+
+.button {
+    margin: 10px;
+}
+
+.place {
+    margin: 5px;
+}
