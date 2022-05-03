@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import SuperInputText from "../common/SuperInput/SuperInputText";
 import SuperButton from "../common/SuperButton/SuperButton";
 import './Register.css'
-import {registerAPI} from "./api/registerAPI";
+import {cardsAPI} from "../../api/cardsAPI";
 
 export function Register() {
     const [email, setEmail] = useState('')
@@ -15,12 +15,12 @@ export function Register() {
         password: pass
     }
     const onClickHandler = () => {
-        if(pass===pass2){
-            registerAPI.signUp(payload)
+        if (pass === pass2) {
+            cardsAPI.signUp(payload)
                 .then(r => {
                     console.log(r)
                 })
-        }else{
+        } else {
             setError(true)
         }
     };
