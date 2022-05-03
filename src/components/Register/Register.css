@@ -3,7 +3,18 @@
     text-align: center;
     font-size: larger;
     color: #c24f4f;
+    width: 500px;
+    height: 500px;
+    border: 1px solid #7c7a7a;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-.error{
+
+.error {
     color: red;
 }
+
