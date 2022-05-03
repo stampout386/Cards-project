@@ -37,7 +37,11 @@ export const profileReducer = (state: initialStateType = initialState, action: A
                 email: action.payload.email,
                 name: action.payload.name,
                 avatar: action.payload.avatar,
-                publicCardPacksCount: action.payload.publicCardPacksCount
+                publicCardPacksCount: action.payload.publicCardPacksCount,
+                rememberMe: action.payload.rememberMe,
+                isAdmin: action.payload.isAdmin,
+                verified: action.payload.verified,
+
             }
         }
         default :
@@ -46,13 +50,13 @@ export const profileReducer = (state: initialStateType = initialState, action: A
 }
 
 //action
-export const setUserData = (data:any) => {
-    const {_id, email, name, avatar, publicCardPacksCount} = data;
+export const setUserData = (data: any) => {
+    const {_id, email, name, avatar, publicCardPacksCount, rememberMe, isAdmin, verified} = data;
 
     return {
         type: SET_USER_DATA,
         payload: {
-            _id, email, name, avatar, publicCardPacksCount
+            _id, email, name, avatar, publicCardPacksCount, rememberMe, isAdmin, verified
         }
     } as const
 }

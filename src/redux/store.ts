@@ -12,7 +12,7 @@ import {appReducer} from "./appReducer";
 const rootReducer = combineReducers({
     loginPage: loginReducer,
     profilePage: profileReducer,
-    app : appReducer,
+    app: appReducer,
     // newPassword: newPasswordReducer,
     // recoverPassword: recoverPasswordReducer,
     // testPage: testPageReducer,
@@ -25,3 +25,5 @@ export const store = createStore(rootReducer, applyMiddleware(thunk))
 export type AppRootStateType = ReturnType<typeof rootReducer>;
 
 
+// @ts-ignore
+window.store = store;
