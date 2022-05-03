@@ -2,11 +2,14 @@ import {instance} from "./cardsAPI";
 
 export const authAPI = {
 
-    login(data:LoginParamsType) {
+    login(data: LoginParamsType) {
         return instance.post<UserDataType>('auth/login', data)
     },
     logout() {
         return instance.delete('auth/me')
+    },
+    authMe() {
+        return instance.post('auth/me')
     }
 }
 

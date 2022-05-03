@@ -21,10 +21,12 @@ export const Login = () => {
 
     const onchangeEmail = useCallback((e: ChangeEvent<HTMLInputElement>) => setEmail(e.currentTarget.value), [setEmail])
     const onchangePassword = useCallback((e: ChangeEvent<HTMLInputElement>) => setPassword(e.currentTarget.value), [setPassword])
-    const onclickHandler = useCallback(() => {dispatch<any>(login({email, password, rememberMe}))}, [email, password, rememberMe, dispatch])
+    const onclickHandler = useCallback(() => {
+        dispatch<any>(login({email, password, rememberMe}))
+    }, [email, password, rememberMe, dispatch])
 
     if (isLoggedIn) {
-        return <Navigate to={'/'} />
+        return <Navigate to={'/'}/>
     }
 
     return (
@@ -35,7 +37,7 @@ export const Login = () => {
             <SuperCheckbox onChangeChecked={setRememberMe}>Remember Me</SuperCheckbox>
             <NavLink to={'/passwordrecovery'}>Forgot Password</NavLink>
             <SuperButton onClick={onclickHandler}>Login</SuperButton>
-            <NavLink to={'/'}>Register</NavLink>
+            <NavLink to={'/register'}>Register</NavLink>
         </div>
     )
 }
