@@ -1,5 +1,6 @@
 import {ActionsTypeLogin} from "./loginReducer";
 import {ActionTypeProfile} from "./profileReducer";
+import {ActionTypeApp} from "./appReducer";
 
 export const testPageReducer = (state: any, action: ActionType) => {
     switch (action.type) {
@@ -16,4 +17,4 @@ export const errorPageReducer = (state: any, action: ActionType) => {
 }
 
 
-export type ActionType = ActionsTypeLogin | ActionTypeProfile
+export type ActionType = ActionsTypeLogin | ActionTypeProfile | ActionTypeApp

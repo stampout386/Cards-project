@@ -8,7 +8,7 @@ export const authAPI = {
     logout() {
         return instance.delete('auth/me')
     },
-    authMe() {
+    me() {
         return instance.post('auth/me')
     }
 }

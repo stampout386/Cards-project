@@ -19,7 +19,7 @@ export const loginReducer = (state: InitialStateType = InitialState, action: Act
 }
 
 // actions
-const LoggedIn = (isLoggedIn: boolean) => ({type: 'LOGGED-IN', payload: {isLoggedIn}} as const)
+export const LoggedIn = (isLoggedIn: boolean) => ({type: 'LOGGED-IN', payload: {isLoggedIn}} as const)
 const Error = (error: string) => ({type: 'ERROR', payload: {error}} as const)
 
 // thunks
@@ -34,7 +34,7 @@ export const login = (data: LoginParamsType) => async (dispatch: Dispatch<Action
     }
 }
 
-export const logout = () => (dispatch: Dispatch<ActionsTypeLogin>) => {
+export const logout = () => (dispatch: Dispatch<ActionType>) => {
     authAPI.logout()
         .then(() => {
             dispatch(LoggedIn(false))
