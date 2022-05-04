@@ -3,13 +3,21 @@ import SuperInputText from "../common/SuperInput/SuperInputText";
 import SuperButton from "../common/SuperButton/SuperButton";
 import './Register.css'
 import {cardsAPI} from "../../api/cardsAPI";
-import {useNavigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../redux/store";
+import {RequestStatusType, setStatusApp} from "../../redux/appReducer";
+import {Preloader} from "../common/Preloader/Preloader";
 
 export function Register() {
+    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.loginPage.isLoggedIn)
+    const status = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status)
+
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
     const [pass2, setPass2] = useState('')
     const [error, setError] = useState('')
+    const dispatch = useDispatch()
 
     const navigate = useNavigate()
 
@@ -19,6 +27,7 @@ export function Register() {
     }
     const onClickRegisterHandler = () => {
         if (pass === pass2) {
+            dispatch(setStatusApp("loading"))
             cardsAPI.signUp(payload)
                 .then(() => {
                     navigate('/login')
@@ -26,17 +35,28 @@ export function Register() {
                 .catch(r=>{
                     setError(r.response.data.error)
                 })
+                .finally(()=>{
+                    dispatch(setStatusApp("succeeded"))
+                })
         } else {
             setError('ERROR:password must be the same')
         }
-    };
+    }
+
     const onClickCancelHandler = () => {
         if(error){
             setError('')
         }else{
             navigate('/login')
         }
-    };
+    }
+
+    if (isLoggedIn) {
+        return <Navigate to={'/'}/>
+    }
+
+    if (status === 'loading') return <div style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}><Preloader/></div>
+
     return (
         <div className={'register'}>
             <h3>Register</h3>

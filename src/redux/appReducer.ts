@@ -7,20 +7,20 @@ import {LoggedIn} from "./loginReducer";
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 
 export type initialStateType = {
-    status: string
+    status: RequestStatusType
     isInitialized: boolean
 
 }
 
-const initialState = {
-    status: 'idle',
+const initialState: initialStateType = {
+    status: "idle",
     isInitialized: false,
 }
 
 const SET_INITIAL_APP = 'SET_INITIAL_APP';
 const SET_STATUS_APP = 'SET_STATUS_APP'
 
-export const appReducer = (state: initialStateType = initialState, action: ActionType): initialStateType => {
+export const appReducer = (state = initialState, action: ActionType): initialStateType => {
     switch (action.type) {
         case SET_STATUS_APP:
             return {
@@ -36,7 +36,7 @@ export const appReducer = (state: initialStateType = initialState, action: Actio
         }
     }
 }
-export const setStatusApp = (status: string) => {
+export const setStatusApp = (status: RequestStatusType) => {
     return {
         type: SET_STATUS_APP,
         status
