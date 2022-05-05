@@ -10,7 +10,13 @@ export const authAPI = {
     },
     me() {
         return instance.post('auth/me')
-    }
+    },
+    newPassword(data: newPasswordType) {
+        return instance.post<ResponseType>('auth/set-new-password', data)
+    },
+    passwordRecovery(data: passwordRecoveryType) {
+        return  instance.post<ResponseType>('auth/forgot', data)
+    },
 }
 
 
@@ -20,7 +26,7 @@ export type LoginParamsType = {
     rememberMe?: boolean
 }
 
-type UserDataType = {
+export type UserDataType = {
     _id: string;
     email: string;
     name: string;
@@ -32,4 +38,20 @@ type UserDataType = {
     isAdmin: boolean;
     verified: boolean; // подтвердил ли почту
     rememberMe: boolean;
+}
+
+export type newPasswordType = {
+    password: string
+    resetPasswordToken: string
+}
+
+export type passwordRecoveryType = {
+    email: string,
+    from: string,
+    message: string
+}
+
+export type ResponseType = {
+    info: string
+    error: string
 }

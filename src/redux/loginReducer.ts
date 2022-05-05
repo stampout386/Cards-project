@@ -6,7 +6,7 @@ import {setStatusApp} from "./appReducer";
 
 const InitialState = {
     isLoggedIn: false,
-    error: '',
+    error: ''
 }
 
 export const loginReducer = (state: InitialStateType = InitialState, action: ActionsTypeLogin): InitialStateType => {
@@ -21,14 +21,14 @@ export const loginReducer = (state: InitialStateType = InitialState, action: Act
 
 // actions
 export const LoggedIn = (isLoggedIn: boolean) => ({type: 'LOGGED-IN', payload: {isLoggedIn}} as const)
-const Error = (error: string) => ({type: 'ERROR', payload: {error}} as const)
+export const Error = (error: string) => ({type: 'ERROR', payload: {error}} as const)
 
 // thunks
 export const login = (data: LoginParamsType) => async (dispatch: Dispatch<ActionType>) => {
     try {
         dispatch(setStatusApp('loading'))
         const res = await authAPI.login(data)
-        dispatch(setUserData(res.data)) //из профайл-редьюсера где идёт set всех данных юзера
+        dispatch(setUserData(res.data))
         dispatch(LoggedIn(true))
         dispatch(setStatusApp('succeeded'))
 

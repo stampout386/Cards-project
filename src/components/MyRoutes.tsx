@@ -7,6 +7,7 @@ import {NewPassword} from "./NewPassword/NewPassword";
 import {Test} from "./Test/Test";
 import React from "react";
 import {Register} from "./Register/Register";
+import {Email} from "./common/Email/Email";
 
 export function MyRoutes() {
     return (
@@ -20,6 +21,7 @@ export function MyRoutes() {
                 <Route path={'passwordrecovery'} element={<PasswordRecovery/>}/>
                 <Route path={'newpassword'} element={<NewPassword/>}/>
                 <Route path={'test'} element={<Test/>}/>
+                <Route path={'/email'} element={<Email/>}/>
             </Routes>
         </div>
     );

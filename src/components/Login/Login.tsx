@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useCallback, useState} from 'react'
+import React, {ChangeEvent, memo, useCallback, useState} from 'react'
 import SuperInputText from "../common/SuperInput/SuperInputText";
 import SuperButton from "../common/SuperButton/SuperButton";
 import SuperCheckbox from "../common/SuperCheckbox/SuperCheckbox";
@@ -9,7 +9,7 @@ import {login} from "../../redux/loginReducer";
 import s from "./Login.module.css"
 import {Preloader} from "../common/Preloader/Preloader";
 
-export const Login = () => {
+export const Login = memo(() => {
 
 
     const dispatch = useDispatch()
@@ -44,4 +44,4 @@ export const Login = () => {
             <NavLink to={'/register'}>Register</NavLink>
         </div>
     )
-}
+})
