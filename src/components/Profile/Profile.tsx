@@ -37,7 +37,7 @@ export function Profile() {
         </div>
         <div>
             <div className={style.description}>Nickname</div>
-            <div>{name}</div>
+            <div><span>{name}</span></div>
         </div>
         <div>
             <div className={style.description}>Email</div>
