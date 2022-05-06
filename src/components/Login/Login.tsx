@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../redux/loginReducer";
 import s from "./Login.module.css"
 import {Preloader} from "../common/Preloader/Preloader";
+import {RequestStatusType} from "../../redux/appReducer";
 
 export const Login = memo(() => {
 
@@ -15,7 +16,7 @@ export const Login = memo(() => {
     const dispatch = useDispatch()
 
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.loginPage.isLoggedIn)
-    const status = useSelector<AppRootStateType, string>(state => state.app.status)
+    const status = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status)
 
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
