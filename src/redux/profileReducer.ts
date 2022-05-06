@@ -35,6 +35,7 @@ const SET_USER_DATA = 'SET_USER_DATA';
 
 export const profileReducer = (state: initialStateType = initialState, action: ActionTypeProfile): initialStateType => {
     switch (action.type) {
+
         case SET_USER_DATA : {
             return {
                 ...state, _id: action.payload._id,
@@ -68,8 +69,7 @@ export const setNameTC = (name: string) => (dispatch: Dispatch) => {
     dispatch(setStatusApp('loading'));
     authAPI.rename({name, avatar: "https://illustrators.ru/uploads/illustration/image/1232594/main_ыыыы.png"})
         .then((res) => {
-            setUserData(res.data.updatedUser)
-            console.log(`ответ: ${res.data.updatedUser}`)
+            dispatch(setUserData(res.data.updatedUser))
         }).catch((e) => {
         console.log(e)
     }).finally(() => {
