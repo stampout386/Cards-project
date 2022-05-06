@@ -9,19 +9,17 @@ import {AppRootStateType} from "../../redux/store";
 
 export const NewPassword = memo(() => {
 
-    const info = useSelector<AppRootStateType, boolean>(state => state.newPassword.response)
+    const info = useSelector<AppRootStateType, boolean>( state => state.newPassword.response)
     const dispatch = useDispatch()
 
     const [password, setPassword] = useState('')
 
-    const resetPasswordToken = useParams<string>()
-    console.log(resetPasswordToken)
+    const {resetPasswordToken} = useParams<string>()
 
-    const onclickHandler = useCallback(() => {
-
+    const onclickHandler = useCallback( () => {
         // @ts-ignore
-        dispatch<any>(setNewPasswordTC({password, resetPasswordToken}))
-    }, [password, resetPasswordToken, dispatch])
+        dispatch<any>(setNewPasswordTC({ password ,resetPasswordToken }))
+    } ,[password, resetPasswordToken, dispatch])
 
     const onchangePassword = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setPassword(e.currentTarget.value)
@@ -36,7 +34,7 @@ export const NewPassword = memo(() => {
             <h3>Create new password</h3>
             <SuperInputText type={'password'} placeholder={'Password'} onChange={onchangePassword}/>
             <p>Create new password and we will send <br/> you further instructions to email</p>
-            <SuperButton className={s.button} onClick={onclickHandler}>Create new password</SuperButton>
+            <SuperButton onClick={onclickHandler}>Create new password</SuperButton>
         </div>
     )
 })

@@ -30,10 +30,9 @@ export const login = (data: LoginParamsType) => async (dispatch: Dispatch<Action
         const res = await authAPI.login(data)
         dispatch(setUserData(res.data))
         dispatch(LoggedIn(true))
-        dispatch(setStatusApp('succeeded'))
-
     } catch (e: any) {
         dispatch(Error(e.response ? e.response.data.error : e.message))
+    } finally {
         dispatch(setStatusApp('succeeded'))
     }
 }
