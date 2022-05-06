@@ -1,6 +1,6 @@
 .container {
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 600px;
     border: 1px solid #7c7a7a;
     margin-left: auto;
     margin-right: auto;
@@ -29,4 +29,8 @@
 
 .button {
     margin: 10px;
+}
+
+.buttonsRename {
+    margin: 5px;
 }

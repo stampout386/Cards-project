@@ -9,8 +9,8 @@ import {recoveryPasswordTC} from "../../redux/recoverPasswordReducer";
 
 export const PasswordRecovery = memo(() => {
 
-    const info = useSelector<AppRootStateType, boolean>( state => state.recoverPassword.response)
-    const dispatch  = useDispatch()
+    const info = useSelector<AppRootStateType, boolean>(state => state.recoverPassword.response)
+    const dispatch = useDispatch()
     const [email, setEmail] = useState("")  //сюда свою почту
     const from = "test-front-admin <ai73a@yandex.by>"// здесь надо что-то написать, я из личного кабинета взяла
     const message = `<div style="background-color: lime; padding: 15px">
@@ -20,10 +20,10 @@ export const PasswordRecovery = memo(() => {
     </div>`//брала из лк
 
     const onchangeEmail = useCallback((e: ChangeEvent<HTMLInputElement>) => setEmail(e.currentTarget.value), [setEmail])
-    const onclickHandler = useCallback( () => {
+    const onclickHandler = useCallback(() => {
         // @ts-ignore
-        dispatch<any>(recoveryPasswordTC({ email, from, message }))
-    } ,[email, from, message])
+        dispatch<any>(recoveryPasswordTC({email, from, message}))
+    }, [email, from, message])
 
     if (info) {
         return <Navigate to={'/email'}/>
@@ -34,7 +34,7 @@ export const PasswordRecovery = memo(() => {
             <h3>Forgot your password?</h3>
             <SuperInputText type={'email'} placeholder={'Enter email'} onChange={onchangeEmail}/>
             <p>Enter your email address and we <br/> will send you further instructions</p>
-            <SuperButton onClick={onclickHandler}>Send Instructions</SuperButton>
+            <SuperButton className={s.button} onClick={onclickHandler}>Send Instructions</SuperButton>
         </div>
     )
 })

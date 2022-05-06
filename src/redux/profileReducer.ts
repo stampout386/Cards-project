@@ -1,3 +1,7 @@
+import {Dispatch} from "redux";
+import {setStatusApp} from "./appReducer";
+import {authAPI} from "../api/loginAPI";
+
 type initialStateType = {
     _id: string;
     email: string;
@@ -59,6 +63,17 @@ export const setUserData = (data: any) => {
             _id, email, name, avatar, publicCardPacksCount, rememberMe, isAdmin, verified
         }
     } as const
+}
+export const setNameTC = (name: string) => (dispatch: Dispatch) => {
+    dispatch(setStatusApp('loading'));
+    authAPI.rename({name, avatar: "https://illustrators.ru/uploads/illustration/image/1232594/main_ыыыы.png"})
+        .then((res) => {
+            setUserData(res.data.updatedUser)
+        }).catch((e) => {
+        console.log(e)
+    }).finally(() => {
+        dispatch(setStatusApp('succeeded'))
+    })
 }
 
 

@@ -11,6 +11,9 @@ export const authAPI = {
     me() {
         return instance.post('auth/me')
     },
+    rename(date:any){
+        return instance.put('auth/me',date)
+    },
     newPassword(data: newPasswordType) {
         return instance.post<ResponseType>('auth/set-new-password', data)
     },
