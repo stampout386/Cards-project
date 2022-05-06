@@ -69,6 +69,7 @@ export const setNameTC = (name: string) => (dispatch: Dispatch) => {
     authAPI.rename({name, avatar: "https://illustrators.ru/uploads/illustration/image/1232594/main_ыыыы.png"})
         .then((res) => {
             setUserData(res.data.updatedUser)
+            console.log(`ответ: ${res.data.updatedUser}`)
         }).catch((e) => {
         console.log(e)
     }).finally(() => {

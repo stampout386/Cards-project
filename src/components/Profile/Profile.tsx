@@ -15,6 +15,7 @@ export const Profile = memo(
     () => {
         const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.loginPage.isLoggedIn)
         const {name, email, avatar, publicCardPacksCount} = useSelector<AppRootStateType, any>(state => state.profilePage)
+        const profilePage = useSelector<AppRootStateType, any>(state => state.profilePage)
         const status = useSelector<AppRootStateType, string>(state => state.app.status)
         const dispatch = useDispatch<any>();
         const [isRename, setIsRename] = useState<boolean>(false)
@@ -27,6 +28,7 @@ export const Profile = memo(
         const saveData = () => {
             dispatch(setNameTC(newName))
             setIsRename(!isRename)
+            console.log(profilePage)
         }
 
         const rename = () => {
