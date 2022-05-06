@@ -12,7 +12,7 @@ import {RequestStatusType} from "../../redux/appReducer";
 
 export const Login = memo(() => {
 
-
+    const error = useSelector<AppRootStateType, string>(state => state.loginPage.error)
     const dispatch = useDispatch()
 
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.loginPage.isLoggedIn)
@@ -39,6 +39,7 @@ export const Login = memo(() => {
             <h3>Sign In</h3>
             <SuperInputText type={'email'} placeholder={'Enter email'} onChange={onchangeEmail}/>
             <SuperInputText type={'password'} placeholder={'Password'} onChange={onchangePassword}/>
+            {error && <div className={s.error}>{error}</div>}
             <SuperCheckbox onChangeChecked={setRememberMe}>Remember Me</SuperCheckbox>
             <NavLink to={'/passwordrecovery'}>Forgot Password</NavLink>
             <SuperButton onClick={onclickHandler}>Login</SuperButton>

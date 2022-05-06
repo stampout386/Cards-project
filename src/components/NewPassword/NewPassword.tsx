@@ -34,7 +34,7 @@ export const NewPassword = memo(() => {
             <h3>Create new password</h3>
             <SuperInputText type={'password'} placeholder={'Password'} onChange={onchangePassword}/>
             <p>Create new password and we will send <br/> you further instructions to email</p>
-            <SuperButton onClick={onclickHandler}>Create new password</SuperButton>
+            <SuperButton onClick={onclickHandler}>Create</SuperButton>
         </div>
     )
 })
