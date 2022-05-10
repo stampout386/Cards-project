@@ -1,10 +1,24 @@
 .superInput {
-    width: 200px;
-    font-size: 13px;
-    padding: 6px 0 4px 10px;
-    border: 1px solid #cecece;
-    background: #F6F6f6;
-    border-radius: 8px;
+    border: none;
+    border-bottom: 2px solid #24254A;
+    outline: none;
+    opacity: 50%;
+    width: 347px;
+
+
+    /*width: 200px;*/
+    /*font-size: 13px;*/
+    /*padding: 6px 0 4px 10px;*/
+    /*border: 1px solid #cecece;*/
+    /*background: #F6F6f6;*/
+    /*border-radius: 8px;*/
+}
+
+.superInput::placeholder {
+    font-weight: 400;
+    font-size: 14px;
+    color: #24254A;
+    opacity: 90%;
 }
 
 .errorInput {

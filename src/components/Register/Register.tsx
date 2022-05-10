@@ -72,25 +72,25 @@ export function Register() {
                 <div style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}><Preloader/></div>}
             <h3>Register</h3>
             <div className={'place'}>
-                <SuperInputText placeholder={'email'}
+                <SuperInputText placeholder={'Email'}
                                 onChangeText={setEmail}
                                 value={email}
                                 onClick={errorHandler}/>
             </div>
             <div className={'place'}>
-                <SuperInputText placeholder={'password'}
+                <SuperInputText placeholder={'Password'}
                                 onChangeText={setPass}
                                 value={pass}
                                 onClick={errorHandler}/>
             </div>
             <div className={'place'}>
-                <SuperInputText placeholder={'repeat password'}
+                <SuperInputText placeholder={'Repeat password'}
                                 onChangeText={setPass2}
                                 value={pass2}
                                 onClick={errorHandler}/>
             </div>
             {error && <div className={"error"}>{error}</div>}
-            <div>
+            <div className={'buttons'}>
                 <SuperButton className={'button'}
                              onClick={onClickCancelHandler}
                              disabled={status === "loading"}>

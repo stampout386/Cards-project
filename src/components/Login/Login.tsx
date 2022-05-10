@@ -51,10 +51,15 @@ export const Login = memo(() => {
                             onChange={onchangePassword}
                             onClick={errorHandler}/>
             {error && <div className={s.error}>{error}</div>}
-            <SuperCheckbox onChangeChecked={setRememberMe}>Remember Me</SuperCheckbox>
-            <NavLink to={'/passwordrecovery'}>Forgot Password</NavLink>
+            <div className={s.action}>
+                <div className={s.subaction}>
+                    <SuperCheckbox onChangeChecked={setRememberMe} />
+                    <span>Remember Me</span>
+                </div>
+                <NavLink to={'/passwordrecovery'} className={s.forgot}>Forgot Password</NavLink>
+            </div>
             <SuperButton onClick={onclickHandler} disabled={status === 'loading'}>Login</SuperButton>
-            <NavLink to={'/register'}>Register</NavLink>
+            <div className={s.register}><NavLink to={'/register'} className={s.text}>Register</NavLink></div>
         </div>
     )
 })

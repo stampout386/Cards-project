@@ -38,7 +38,7 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
         && onEnter() // то вызвать его
     }
     const finalSpanClassName = `${s.error} ${spanClassName ? spanClassName : ''}`
-    const finalInputClassName = `${s.errorInput} ${className ? className : s.superInput} ` // need to fix with (?:) and s.superInput
+    // const finalInputClassName = `${s.errorInput} ${className ? className : s.superInput} ` // need to fix with (?:) and s.superInput
 
     return (
         <>
@@ -46,7 +46,8 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
                 type={'text'}
                 onChange={onChangeCallback}
                 onKeyPress={onKeyPressCallback}
-                className={finalInputClassName}
+                className={s.superInput}
+                // className={finalInputClassName}
 
                 {...restProps} // отдаём инпуту остальные пропсы если они есть (value например там внутри)
             />

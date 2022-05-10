@@ -2,9 +2,12 @@ import React from "react";
 import s from './Preloader.module.css'
 
 export const Preloader = () => {
-    return <div className={s.progress}>
-        <div>
-
-        </div>
-    </div>
+    return (
+        <span className={s.loader}></span>
+    //     <div className={s.progress}>
+    //     <div>
+    //
+    //     </div>
+    // </div>
+    )
 }
