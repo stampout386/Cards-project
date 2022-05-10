@@ -6,11 +6,30 @@ export const instance = axios.create({
     withCredentials: true,
 })
 
+export type getCardsType = {
+    packName?: string
+    min?: number
+    max?: number
+    sortPacks?: string
+    page?: number
+    pageCount?: number
+    user_id?: string
+}
+
+const packId = '6278fc23f215af00044bde0d'
 
 export const cardsAPI = {
     signUp: async (payload: any) => {
         const response = await instance.post('/auth/register', payload)
         return response.data
     },
+    getCards: async () => {
+        const res = await instance.get(`/cards/card?cardsPack_id=${packId}`)
+        console.log(res)
+    },
+    getPacks: async () => {
+        const res = await instance.get('/cards/pack')
+        console.log(res)
+    }
 }
 
