@@ -4,6 +4,7 @@ import SuperButton from "../common/SuperButton/SuperButton";
 import SuperCheckbox from "../common/SuperCheckbox/SuperCheckbox";
 import s from './Test.module.css'
 import {Cards} from "../Cards/Cards";
+import {CardsPage} from "../Cards/CardsPage";
 
 export function Test() {
     return (
@@ -12,6 +13,7 @@ export function Test() {
             <SuperButton className={s.container}>Button</SuperButton>
             <SuperCheckbox className={s.container}/>
             <Cards/>
+            {/*<CardsPage/>*/}
         </div>
     );
 }

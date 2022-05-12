@@ -16,20 +16,20 @@ export type getCardsType = {
     user_id?: string
 }
 
-const packId = '6278fc23f215af00044bde0d'
+//const packId = '60ae372b469a3a0004c7b7a0'
 
 export const cardsAPI = {
-    signUp: async (payload: any) => {
-        const response = await instance.post('/auth/register', payload)
-        return response.data
-    },
-    getCards: async () => {
-        const res = await instance.get(`/cards/card?cardsPack_id=${packId}`)
+    getCards: async (packId:string) => {
+        const res = await instance.get(`/cards/card?cardsPack_id=${packId}&pageCount=200`)
         console.log(res)
+    },
+    addNewCard: async (card: {}) => {
+        const res = await instance.post('/cards/card',{card})
+        //console.log(res)
     },
     getPacks: async () => {
         const res = await instance.get('/cards/pack')
-        console.log(res)
+        //console.log(res)
     }
 }
 

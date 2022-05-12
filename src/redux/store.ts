@@ -7,6 +7,7 @@ import {legacy_createStore as createStore} from 'redux'
 import thunk from 'redux-thunk';
 import {profileReducer} from "./profileReducer";
 import {appReducer} from "./appReducer";
+import {cardsReducer} from "./cardsReducer";
 
 
 const rootReducer = combineReducers({
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     app: appReducer,
     newPassword: newPasswordReducer,
     recoverPassword: recoverPasswordReducer,
+    cardsPage: cardsReducer
     // testPage: testPageReducer,
     // errorPage: errorPageReducer,
 

@@ -20,6 +20,10 @@ export const authAPI = {
     passwordRecovery(data: passwordRecoveryType) {
         return  instance.post<ResponseType>('auth/forgot', data)
     },
+    signUp: async (payload: any) => {
+        const response = await instance.post('/auth/register', payload)
+        return response.data
+    },
 }
 
 
