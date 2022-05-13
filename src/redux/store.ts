@@ -1,12 +1,13 @@
 import {applyMiddleware, combineReducers} from "redux";
-import {errorPageReducer, testPageReducer} from "./reducers";
-import {loginReducer} from "./loginReducer";
+import {ActionType, errorPageReducer, testPageReducer} from "./reducers";
+import {ActionsTypeLogin, loginReducer} from "./loginReducer";
 import {newPasswordReducer} from "./newPasswordReducer";
 import {recoverPasswordReducer} from "./recoverPasswordReducer";
 import {legacy_createStore as createStore} from 'redux'
-import thunk from 'redux-thunk';
+import thunk, {ThunkAction} from 'redux-thunk';
 import {profileReducer} from "./profileReducer";
 import {appReducer} from "./appReducer";
+import {packsReducer} from "./packsReducer";
 
 
 const rootReducer = combineReducers({
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     app: appReducer,
     newPassword: newPasswordReducer,
     recoverPassword: recoverPasswordReducer,
+    packs: packsReducer,
     // testPage: testPageReducer,
     // errorPage: errorPageReducer,
 
@@ -23,6 +25,7 @@ const rootReducer = combineReducers({
 export const store = createStore(rootReducer, applyMiddleware(thunk))
 
 export type AppRootStateType = ReturnType<typeof rootReducer>;
+
 
 
 // @ts-ignore
