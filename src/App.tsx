@@ -18,12 +18,13 @@ function App() {
 
 
     if (!isInitialized) {
-        return <div style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}><Preloader/></div>
+        // return <div style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}><Preloader/></div>
+        return <div style={{position: 'fixed', top: '40%', left:'40%'}}><Preloader/></div>
     }
 
 
     return (
-        <div>
+        <div className={"App"}>
             <MyMenu/>
             <MyRoutes/>
         </div>

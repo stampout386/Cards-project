@@ -45,7 +45,7 @@ export const Profile = () => {
 
 
     return <div className={style.container}>
-        Personal information
+        <h3>Personal information</h3>
         <div>
             <img src={avatar} alt="" className={style.avatar}/>
         </div>
