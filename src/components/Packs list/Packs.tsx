@@ -145,7 +145,7 @@ export const Packs = () => {
                         <Popconfirm title="Are you sure?" onConfirm={() => handleDelete(record.key)}>
                             <a>Delete</a>
                         </Popconfirm>
-                        <NavLink to={'/learn'}>Learn</NavLink>
+                        <NavLink to={'/cards'}>Learn</NavLink>
                         <a onClick={() => modalCallBack()}>Update</a>
                     </Space>
                 </div>

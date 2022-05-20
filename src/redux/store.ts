@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
     newPassword: newPasswordReducer,
     recoverPassword: recoverPasswordReducer,
     packs: packsReducer,
-    cardsPage: cardsReducer
+    cards: cardsReducer
     // testPage: testPageReducer,
     // errorPage: errorPageReducer,
 

@@ -9,6 +9,7 @@ import React from "react";
 import {Register} from "./Register/Register";
 import {Email} from "./common/Email/Email";
 import {Packs} from "./Packs list/Packs";
+import {Cards} from "./Cards/Cards";
 
 export function MyRoutes() {
     return (
@@ -24,6 +25,7 @@ export function MyRoutes() {
                 <Route path={'test'} element={<Test/>}/>
                 <Route path={'/email'} element={<Email/>}/>
                 <Route path={'/packs'} element={<Packs/>}/>
+                <Route path={'/cards'} element={<Cards/>}/>
             </Routes>
         </div>
     );

@@ -1,41 +1,42 @@
-import React, {useEffect, useState} from "react";
-import {cardsAPI, instance} from "../../api/cardsAPI";
-import { Table } from 'antd';
+import React, {ChangeEvent, useEffect, useState} from "react";
+import {CardType} from "../../api/cardsAPI";
+import {Table} from 'antd';
 import 'antd/dist/antd.css'
 import {useDispatch, useSelector} from "react-redux";
-import {getCardsTC} from "../../redux/cardsReducer";
+import {addCardsTC, addCardType, deleteCardTC, getCardsTC} from "../../redux/cardsReducer";
 import {AppRootStateType} from "../../redux/store";
+import SuperInputText from "../common/SuperInput/SuperInputText";
+import SuperButton from "../common/SuperButton/SuperButton";
+import {RequestStatusType} from "../../redux/appReducer";
+import Spin from "antd/es/spin";
 
 export const Cards = () => {
 
-    // const dispatch:any = useDispatch()
+    const dispatch: any = useDispatch()
 
-    // useEffect(() => {
-    //     dispatch(getCardsTC(cardsPackId))
-    // }, [])
-    const onDeleteHandler = (key: any) => {
-        console.log(key)
-    }
-    const data1 = [{key: '1', question: '', answer: '', grade: 0,},];
-    const [data, setRows] = useState(data1)
-   // let data = useSelector<AppRootStateType>(state => state.cardsPage)
+    const currentPack_id = useSelector<AppRootStateType, string>(s => s.packs.cardsPack_id)
+    const newData = useSelector<AppRootStateType, CardType[]>(s => s.cards)
+    const status = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status)
 
-    console.log(data)
-    const columns:any = [
+    const [data, setRows] = useState([{}])
+    const [newQuestion, setNewQuestion] = useState('')
+    const [newAnswer, setNewAnswer] = useState('')
+
+    const columns: any = [
         {
             title: 'Question',
             dataIndex: 'question',
             sorter: (a: any, b: any) => a.question.length - b.question.length,
-        },{
+        }, {
             title: 'Answer',
             dataIndex: 'answer',
-            sorter: (a:any, b:any) => a.age - b.age,
+            sorter: (a: any, b: any) => a.age - b.age,
         },
 
         {
             title: 'Grade',
             dataIndex: 'grade',
-            sorter: (a:any, b:any) => a.grade - b.grade,
+            sorter: (a: any, b: any) => a.grade - b.grade,
         },
         {
             title: 'Updated',
@@ -45,46 +46,60 @@ export const Cards = () => {
         {
             title: 'Actions',
             dataIndex: 'operation',
-            render: (key:any)=><a onClick={()=>onDeleteHandler(key)}>Delete</a>
+            render: (_: any, record: CardType) => <a onClick={() => onDeleteHandler(record)}>Delete</a>
         },
     ];
-
-
-
-
-    function onChange(pagination:any, filters:any, sorter:any, extra:any) {
-        console.log('params', pagination, filters, sorter, extra);
+    const newCard: addCardType = {
+        cardsPack_id: currentPack_id,
+        question: newQuestion,
+        answer: newAnswer,
     }
-    // const onClickCardsHandler = () => {
-    //   cardsAPI.getCards()
-    // }
-    // const onClickPacksHandler = () => {
-    //   cardsAPI.getPacks()
-    // }
-    const cardsPackId = '60ae372b469a3a0004c7b7a0'
 
     useEffect(() => {
-        instance.get(`/cards/card?cardsPack_id=${cardsPackId}&pageCount=200`)
-            .then(r => {
-                console.log(r.data.cards)
-                r.data.cards && setRows(r.data.cards
-                    //    .map((m:{}, i:string)=> ({...m, id: i}))
-                )
-            })
-    }, [])
+        dispatch(getCardsTC(currentPack_id))
+    }, [dispatch, currentPack_id])
+    useEffect(() => {
+        setRows(newData)
+    }, [newData])
 
+    const onDeleteHandler = (card: CardType) => {
+        try {
+            dispatch(deleteCardTC(card))
+        } catch {
+            Error('some error occurred !')
+        }
+    }
+    const handleAddCard = () => {
+        try {
+            dispatch(addCardsTC(newCard))
+        } catch {
+            Error('some error occurred !')
+        } finally {
+            setNewAnswer('')
+            setNewQuestion('')
+        }
+    }
+    const changeAnswerHandler = (event: ChangeEvent<HTMLInputElement>) => setNewAnswer(event.currentTarget.value)
+    const changeQuestionHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setNewQuestion(event.currentTarget.value)
+    }
 
-  // @ts-ignore
-    return<>
-      {/*<div>*/}
-
-      {/*    <button onClick={onClickCardsHandler}>getCards</button>*/}
-      {/*    <button onClick={onClickPacksHandler}>getPacks</button>*/}
-
-      {/*</div>*/}
-      <Table columns={columns}
-             dataSource={data}
-             onChange={onChange}
-             pagination={{ pageSize: 3 }}/>;
-  </>
+    return <>
+        <Spin spinning={status === 'loading'}>
+            <div>
+                <div>
+                <SuperInputText placeholder={'inter the question'}
+                                value={newQuestion}
+                                onChange={changeQuestionHandler}/>
+                <SuperButton onClick={handleAddCard}>Add card</SuperButton>
+                </div>
+                    <SuperInputText placeholder={'inter the answer'}
+                                value={newAnswer}
+                                onChange={changeAnswerHandler}/>
+            </div>
+            <Table columns={columns}
+                   dataSource={data}
+                   pagination={{pageSize: 10}}/>;
+        </Spin>
+    </>
 }

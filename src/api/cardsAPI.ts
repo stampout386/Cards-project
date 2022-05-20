@@ -7,33 +7,46 @@ export const instance = axios.create({
 })
 
 // my=======
-// export type getCardsType = {
-//     packName?: string
-//     min?: number
-//     max?: number
-//     sortPacks?: string
-//     page?: number
-//     pageCount?: number
-//     user_id?: string
-// }
+export type getCardsType = {
+    cards: CardType[]
+    error: string
+}
+export type CardType = {
+    answer: string
+    question: string
+    cardsPack_id: string
+    grade: number
+    shots: number
+    user_id: string
+    created: string
+    updated: string
+    _id: string
+
+    comments?: string
+    more_id?: string
+    rating?: number
+    type?: string
+    __v?: number
+}
+
 //const packId = '60ae372b469a3a0004c7b7a0'
 //=============
 
 export const cardsAPI = {
-    getCards: async (packId:string) => {
-        const res = await instance.get(`/cards/card?cardsPack_id=${packId}&pageCount=200`)
-        console.log(res)
+    getCards: async (packId: string) => {
+        const res = await instance.get<getCardsType>(`/cards/card?cardsPack_id=${packId}&pageCount=200`)
+        return res.data
     },
-    addNewCard: async (card: {}) => {
-        const res = await instance.post('/cards/card',{card})
-        //console.log(res)
+    addCard: async (card: any) => {
+        const res = await instance.post<any>('/cards/card',{card})
+        return res.data
     },
-    getPacks: async () => {
-        const res = await instance.get('/cards/pack')
-        //console.log(res)
-    }
+    deleteCard: async (id: string) => {
+        const res = await instance.delete<any>('/cards/card?id='+id)
+        return res.data
+    },
     packs() {
-        return instance.get(`cards/pack`)
+        return instance.get(`cards/pack`+'?pageCount=100')
     },
     packsAdd(data: RequestPackType) {
         return instance.post(`cards/pack`, {cardsPack: data})

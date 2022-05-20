@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useState} from "react";
+import React, {useState} from "react";
 import style from './Profile.module.css'
 import SuperButton from "../common/SuperButton/SuperButton";
 import {useDispatch, useSelector} from "react-redux";
@@ -10,14 +10,13 @@ import SuperInputText from "../common/SuperInput/SuperInputText";
 import {setNameTC} from "../../redux/profileReducer";
 
 
-
 export const Profile = () => {
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.loginPage.isLoggedIn)
     const {name, email, avatar, publicCardPacksCount} = useSelector<AppRootStateType, any>(state => state.profilePage)
     const status = useSelector<AppRootStateType, string>(state => state.app.status)
     const dispatch = useDispatch<any>();
     const [isRename, setIsRename] = useState<boolean>(false)
-    const [newName, setNewName] = useState<string>('')
+    const [newName, setNewName] = useState<string>(name)
     const logoutClick = () => {
         dispatch(logout())
     }
@@ -41,7 +40,8 @@ export const Profile = () => {
         return <Navigate to={'/login'}/>
     }
 
-    if (status === 'loading') return <div style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}><Preloader/></div>
+    if (status === 'loading') return <div style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
+        <Preloader/></div>
 
 
     return <div className={style.container}>
@@ -53,10 +53,11 @@ export const Profile = () => {
             <div className={style.description}>Nickname</div>
             <div>
                 {!isRename && <span>{name}</span>}
-                {isRename && <SuperInputText onChange={onChangeInput}/>}
+                {isRename && <SuperInputText onChange={onChangeInput} value={newName}/>}
                 <div>
-                    <SuperButton onClick={rename} className={style.buttonsRename}>Rename</SuperButton>
-                    <SuperButton className={style.buttonsRename} onClick={saveData}>Save</SuperButton>
+                    <SuperButton onClick={rename}
+                                 className={style.buttonsRename}>{isRename ? 'Cancel' : 'Rename'}</SuperButton>
+                    {isRename && <SuperButton className={style.buttonsRename} onClick={saveData}>Save</SuperButton>}
                 </div>
 
             </div>
