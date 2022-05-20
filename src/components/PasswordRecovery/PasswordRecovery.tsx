@@ -11,13 +11,13 @@ export const PasswordRecovery = memo(() => {
 
     const info = useSelector<AppRootStateType, boolean>(state => state.recoverPassword.response)
     const dispatch = useDispatch()
-    const [email, setEmail] = useState("")  //сюда свою почту
-    const from = "test-front-admin <ai73a@yandex.by>"// здесь надо что-то написать, я из личного кабинета взяла
+    const [email, setEmail] = useState("irina.bogdanova.1990@gmail.com")
+    const from = "test-front-admin <ai73a@yandex.by>"
     const message = `<div style="background-color: lime; padding: 15px">
         password recovery link:
-        <a href='http://localhost:3000/#/set-new-password/$token$'>
+        <a href='https://stampout386.github.io/cards-project/#/newpassword/$token$'>
             link</a>
-    </div>`//брала из лк
+    </div>`
 
     const onchangeEmail = useCallback((e: ChangeEvent<HTMLInputElement>) => setEmail(e.currentTarget.value), [setEmail])
     const onclickHandler = useCallback(() => {
@@ -25,7 +25,7 @@ export const PasswordRecovery = memo(() => {
         dispatch<any>(recoveryPasswordTC({email, from, message}))
     }, [email, from, message])
 
-    if (info) {
+    if (!info) {
         return <Navigate to={'/email'}/>
     }
 

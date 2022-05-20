@@ -2,13 +2,13 @@ import React, {useState} from "react";
 import SuperInputText from "../common/SuperInput/SuperInputText";
 import SuperButton from "../common/SuperButton/SuperButton";
 import './Register.css'
-import {cardsAPI} from "../../api/cardsAPI";
 import {Navigate, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../redux/store";
 import {RequestStatusType, setStatusApp} from "../../redux/appReducer";
 import {Preloader} from "../common/Preloader/Preloader";
 import {Error} from "../../redux/loginReducer";
+import {authAPI} from "../../api/loginAPI";
 
 export type PayloadRegisterType = {
     email: string
@@ -35,7 +35,7 @@ export function Register() {
     const onClickRegisterHandler = () => {
         if (pass === pass2) {
             dispatch(setStatusApp("loading"))
-            cardsAPI.signUp(payload)
+            authAPI.signUp(payload)
                 .then(() => {
                     navigate('/login')
                 })
@@ -72,25 +72,28 @@ export function Register() {
                 <div style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}><Preloader/></div>}
             <h3>Register</h3>
             <div className={'place'}>
-                <SuperInputText placeholder={'email'}
+                <SuperInputText placeholder={'Email'}
                                 onChangeText={setEmail}
                                 value={email}
-                                onClick={errorHandler}/>
+                                onClick={errorHandler}
+                                disabled={status === "loading"}/>
             </div>
             <div className={'place'}>
-                <SuperInputText placeholder={'password'}
+                <SuperInputText placeholder={'Password'}
                                 onChangeText={setPass}
                                 value={pass}
-                                onClick={errorHandler}/>
+                                onClick={errorHandler}
+                                disabled={status === "loading"}/>
             </div>
             <div className={'place'}>
-                <SuperInputText placeholder={'repeat password'}
+                <SuperInputText placeholder={'Repeat password'}
                                 onChangeText={setPass2}
                                 value={pass2}
-                                onClick={errorHandler}/>
+                                onClick={errorHandler}
+                                disabled={status === "loading"}/>
             </div>
             {error && <div className={"error"}>{error}</div>}
-            <div>
+            <div className={'buttons'}>
                 <SuperButton className={'button'}
                              onClick={onClickCancelHandler}
                              disabled={status === "loading"}>

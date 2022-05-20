@@ -12,6 +12,7 @@ export function MyMenu() {
             <NavLink className={({isActive}) => (isActive ? s.active : s.item)} to={'/passwordrecovery'}>Password Recovery</NavLink>
             <NavLink className={({isActive}) => (isActive ? s.active : s.item)} to={'/newpassword'}>New Password</NavLink>
             <NavLink className={({isActive}) => (isActive ? s.active : s.item)} to={'/test'}>Test</NavLink>
+            <NavLink className={({isActive}) => (isActive ? s.active : s.item)} to={'/packs'}>Packs</NavLink>
         </div>
 
     );

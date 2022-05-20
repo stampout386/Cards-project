@@ -1,52 +1,91 @@
-@keyframes spin {
-    to {
-        transform: rotate(1turn);
-    }
-}
+/*@keyframes spin {*/
+/*    to {*/
+/*        transform: rotate(1turn);*/
+/*    }*/
+/*}*/
 
-.progress {
-    position: relative;
-    display: inline-block;
-    width: 5em;
-    height: 5em;
-    margin: 10px;
-    font-size: 8px;
-    text-indent: 999em;
-    overflow: hidden;
-    animation: spin 1s infinite steps(50);
-}
+/*.progress {*/
+/*    position: relative;*/
+/*    display: inline-block;*/
+/*    width: 5em;*/
+/*    height: 5em;*/
+/*    margin: 10px;*/
+/*    font-size: 8px;*/
+/*    text-indent: 999em;*/
+/*    overflow: hidden;*/
+/*    animation: spin 1s infinite steps(50);*/
+/*}*/
 
-.progress:before,
-.progress:after,
-.progress > div:before,
-.progress > div:after {
+/*.progress:before,*/
+/*.progress:after,*/
+/*.progress > div:before,*/
+/*.progress > div:after {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 2.25em;*/
+/*    width: .7em;*/
+/*    height: 1.3em;*/
+/*    border-radius: .2em;*/
+/*    background: #b9eaba;*/
+/*    box-shadow: 0 3.5em #b9eaba;*/
+/*    transform-origin: 50% 2.5em;*/
+/*}*/
+
+/*.progress:before {*/
+/*    background: #077517;*/
+/*}*/
+
+/*.progress:after {*/
+/*    transform: rotate(-45deg);*/
+/*    background: #1b8f20;*/
+/*}*/
+
+/*.progress > div:before {*/
+/*    transform: rotate(-90deg);*/
+/*    background: #4CAF50;*/
+/*}*/
+
+/*.progress > div:after {*/
+/*    transform: rotate(-135deg);*/
+/*    background: #85da88;*/
+/*}*/
+
+
+
+.loader {
+    width: 100px;
+    height: 100px;
+    position:relative;
+}
+.loader:before,
+.loader:after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 2.25em;
-    width: .7em;
-    height: 1.3em;
-    border-radius: .2em;
-    background: #b9eaba;
-    box-shadow: 0 3.5em #b9eaba;
-    transform-origin: 50% 2.5em;
+    width: inherit;
+    height:inherit;
+    border-radius: 50%;
+    mix-blend-mode: multiply;
+    animation: rotate 1s infinite cubic-bezier(0.77, 0, 0.175, 1);
 }
-
-.progress:before {
-    background: #077517;
+.loader:before {
+    background-color: #9890C7;
 }
-
-.progress:after {
-    transform: rotate(-45deg);
-    background: #1b8f20;
+.loader:after {
+    background-color: #E6D4DE;
+    animation-delay: .5s;
 }
-
-.progress > div:before {
-    transform: rotate(-90deg);
-    background: #4CAF50;
-}
-
-.progress > div:after {
-    transform: rotate(-135deg);
-    background: #85da88;
+@keyframes rotate {
+    0%, 100% {
+        left:95px
+    }
+    25% {
+        transform: scale(.3);
+    }
+    50% {
+        left: 0;
+    }
+    75% {
+        transform: scale(1);
+    }
 }
